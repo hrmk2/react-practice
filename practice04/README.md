@@ -11,4 +11,4 @@ npm install
 npm start
 ```
 
-Open http://localhost:8080 in your browser.
+Open http://localhost:3000 in your browser.
