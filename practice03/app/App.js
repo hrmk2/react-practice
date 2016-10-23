@@ -2,19 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import 'whatwg-fetch';
 
-class ContactsAppContainer extends Component {
+class ColorsAppContainer extends Component {
   constructor(){
     super();
     this.state={
-      contacts: []
+      colors: []
     };
   }
 
   componentDidMount(){
-    fetch('./contacts.json')
+    fetch('./colors.json')
         .then((response) => response.json())
         .then((responseData) => {
-          this.setState({contacts: responseData});
+          this.setState({colors: responseData});
         })
         .catch((error) => {
           console.log('Error fetching and parsing data', error);
@@ -23,14 +23,14 @@ class ContactsAppContainer extends Component {
 
   render(){
     return (
-        <ContactsApp contacts={this.state.contacts} />
+        <ColorsApp colors={this.state.colors} />
     );
   }
 }
 
 // 주 컴포넌트(상태 저장)
-// SearchBar와 ContactList를 렌더링하고, filterText 상태와 handleUserInput 콜백을 속성을 통해 전달한다.
-class ContactsApp extends Component {
+// SearchBar와 ColorList를 렌더링하고, filterText 상태와 handleUserInput 콜백을 속성을 통해 전달한다.
+class ColorsApp extends Component {
   constructor(){
     super();
     this.state={
@@ -45,16 +45,16 @@ class ContactsApp extends Component {
   render(){
     return(
         <div>
-          <SearchBar filterText={this.state.filterText}
-                     onUserInput={this.handleUserInput.bind(this)} />
-          <ContactList contacts={this.props.contacts}
-                       filterText={this.state.filterText}/>
+          <SearchBar filterText = {this.state.filterText}
+                     onUserInput = {this.handleUserInput.bind(this)} />
+          <ColorList colors = {this.props.colors}
+                       filterText = {this.state.filterText}/>
         </div>
     )
   }
 }
-ContactsApp.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object)
+ColorsApp.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.object)
 }
 
 // 부모에서 속성을 통해 filterText(문자열)와 onUserInput(콜백함수)을 받는 순수 컴포넌트
@@ -75,37 +75,38 @@ SearchBar.propTypes = {
   filterText: PropTypes.string.isRequired
 }
 
-// 속성을 통해 contacts와 filterText를 받는 순수 컴포넌트이며, 연락처를 필터링한 후 이를 표시하는 역할을 한다.
-// 순수 컴포넌트라고 하는 이유는 동일한 contacts와 filterText 속성을 전달하면 동일한 내용을 표시하기 때문이다.
-class ContactList extends Component {
+// 속성을 통해 colors와 filterText를 받는 순수 컴포넌트이며, 색깔을 필터링한 후 이를 표시하는 역할을 한다.
+// 순수 컴포넌트라고 하는 이유는 동일한 colors와 filterText 속성을 전달하면 동일한 내용을 표시하기 때문이다.
+class ColorList extends Component {
   render(){
-    let filteredContacts = this.props.contacts.filter(
-        (contact) => contact.name.indexOf(this.props.filterText) !== -1
+    let filteredColors = this.props.colors.filter(
+        (color) => color.color.indexOf(this.props.filterText) !== -1
     );
     return(
         <ul>
-          {filteredContacts.map(
-              (contact) => <ContactItem key={contact.email}
-                                        name={contact.name}
-                                        email={contact.email} />
+          {filteredColors.map(
+              (color) => <ColorItem key={color.color}
+                                        color={color.color}
+                                        value={color.value} />
           )}
         </ul>
     )
   }
 }
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
+
+ColorList.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.object),
   filterText: PropTypes.string.isRequired
 }
 
-class ContactItem extends Component {
+class ColorItem extends Component {
   render() {
-    return <li>{this.props.name} - {this.props.email}</li>
+    return <li>{this.props.color} - {this.props.value}</li>
   }
 }
-ContactItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired
+ColorItem.propTypes = {
+  color: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 }
 
-render(<ContactsAppContainer />, document.getElementById('root'));
+render(<ColorsAppContainer />, document.getElementById('root'));

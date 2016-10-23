@@ -1,7 +1,7 @@
 {
   "name": "practice03",
   "version": "0.1.0",
-  "description": "ContactsApp",
+  "description": "ColorsApp",
   "author": "namedcod",
   "scripts": {
     "start": "webpack-dev-server --progress",
