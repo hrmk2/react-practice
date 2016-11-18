@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    font: 16px/1 sans-serif;
+    text-align: center;
+}
+header{
+    width:100%;
+    padding: 15px;
+    text-align: center;
+}
