@@ -4,8 +4,8 @@
   "description": "temperature calculator with react and flux",
   "author": "Jeremy",
   "scripts": {
-      "start": "node index.js",
-      "webpack": "webpack-dev-server --progress",
+    "start": "node index.js",
+    "webpack": "webpack-dev-server --progress",
     "build": "NODE_ENV=production webpack -p --progress --colors"
   },
   "devDependencies": {
