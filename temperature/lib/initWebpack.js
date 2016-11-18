@@ -8,7 +8,7 @@ export default app => {
         var webpackCompiler = webpack(config);
         app.use(webpackDevMiddleware(webpackCompiler, {
             noInfo: true,
-            publicPath: '/public/'
+            publicPath: '/static/'
         }));
     } else {
         console.log('Using webpack build');

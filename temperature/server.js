@@ -8,10 +8,10 @@ const server = http.Server(app);
 
 initWebpack(app);
 
-app.use(express.static(__dirname + '/public'));
-app.use('/public', express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/views'));
+app.use('/static', express.static(__dirname + '/static'));
 app.get('/', (req, res) => {
-    fs.readFile(__dirname + './public/index.html', function(err, data) {
+    fs.readFile(__dirname + './views/index.html', function(err, data) {
         res.send(data);
     });
 });

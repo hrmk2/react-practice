@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var config = {
     entry:  ['./app/index.jsx'],
     output: {
-        path: __dirname + "/public",
+        path: __dirname + "/static",
         filename: "bundle.js"
     },
     devtool: 'source-map',
@@ -24,7 +24,7 @@ var config = {
         ]
     },
     devServer: {
-        contentBase: "./public",
+        contentBase: "./static",
         colors: true,
         historyApiFallback: true,
         inline: true
